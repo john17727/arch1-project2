@@ -1,7 +1,8 @@
 #include <msp430.h>
 #include "buttons.h"
+#include "led.h"
 
-char buttonStateDown, buttonStateChanged;
+char button1SC, button2SC, button3SC;
 
 void buttonInit() {
   P2REN |= BUTTONS;
@@ -9,10 +10,9 @@ void buttonInit() {
   P2OUT |= BUTTONS;
   P2DIR &= ~BUTTONS;
   buttonUpdateIS();
-  buttonInterruptHandler();
 }
 
-static char buttonUpdateIS() {
+static char buttonUpdateIS() { //update interrupt sense
   char p2val = P1IN;
   P2IES |= (p2val & BUTTONS);
   P2IES &| (p2val | ~BUTTONS);
@@ -22,11 +22,10 @@ static char buttonUpdateIS() {
 void buttonInterruptHandler() {
   char p2val = buttonUpdateIS();
   if(p2val & BT1) {
-    buttonStateDown = 1;
-    buttonStateChanged = 1;
+    buttonSC = 1;
+    ledUpdate();
   }
   if(p2val & BT2) {
   }
   if(p2val & BT3) {
   }
-  if(p2val & BT4)

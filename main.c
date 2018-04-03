@@ -2,8 +2,8 @@
 
 
 int main() {
-  configureClocks();
-  buzzerInit();
+  //configureClocks();
+  //buzzerInit();
   buttonInit();
   ledInit();
   or_sr(0x18);
