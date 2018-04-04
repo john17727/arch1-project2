@@ -11,5 +11,6 @@ void ledInit();
 void ledUpdate();
 
 extern unsigned char ledsChanged, greenLedState, redLedState;
+extern int count;
 
 #endif 

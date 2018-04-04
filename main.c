@@ -2,7 +2,7 @@
 
 
 int main() {
-  //configureClocks();
+  configureClocks();
   //buzzerInit();
   buttonInit();
   ledInit();
